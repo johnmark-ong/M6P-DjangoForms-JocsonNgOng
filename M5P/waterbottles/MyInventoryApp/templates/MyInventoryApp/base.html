@@ -1,0 +1,88 @@
+{% load static %}
+
+<html>
+    <head>
+        <title>The Inventory App</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
+        <link rel="stylesheet" href="{% static '/bootstrap/css/bootstrap.min.css' %}">
+        <link rel="stylesheet" href="{% static '/bootstrap/css/custom.css' %}">
+
+        <script src="{% static '/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+        
+        <style>
+            body {
+                display: flex;
+                flex-direction: column;
+                margin: 0; 
+                min-height: 100vh;
+            }
+            .page-wrapper {
+                display: flex;
+                flex: 1;
+            }
+            .sidebar {
+                width: 200px;
+                background-color: #063670;
+                padding: 10px;
+                box-sizing: border-box;
+            }
+            .sidebar a {
+                display: block;
+                color: white;
+                text-decoration: none;
+                padding: 12px 10px;
+                border-radius: 5px;
+                margin-bottom: 5px;
+            }
+            .sidebar a:hover {
+                background-color: #063670;
+            }
+            .main-content {
+                flex: 1;
+                padding: 20px;
+            }
+        </style>
+
+    </head>
+    <body>
+        <nav class="navbar navbar-dark bg-custom sticky-top" style="background-color: #063670;">
+            <div class="container-fluid">
+                <a class="navbar-brand mb-0" href="{% url 'view_inventory' %}">My Inventory App</a>
+                <a href="{% url 'add_bottle' %}" style="color:white"><i class="material-icons">add</i></a>
+            </div>
+        </nav>
+
+        <div class="page-wrapper">
+            <div class="sidebar">
+                {% block sidebar %}
+                    <a href="{% url 'view_supplier' %}">View Suppliers</a>
+                    <a href="{% url 'view_bottles' %}">View Waterbottles</a>
+                {% endblock %}
+            </div>
+
+            <div class="main-content">
+                <div class="container">
+                    <div class="row">
+                        {% block content %}
+                            <div class="d-flex flex-column justify-content-center align-items-center" style= "height:70vh;">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" fill="#063670" class="bi bi-box-seam" viewBox="0 0 16 16">
+                                    <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2zm3.564 1.426L5.596 5 8 5.961 14.154 3.5zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464z"/>
+                                </svg>
+                                <p>Welcome!</p>
+                            </div>
+                        {% endblock %}
+                    </div>
+                </div>  
+            </div>
+        </div>  
+        
+        <footer class="bg-custom text-white text-center py-3" style="background-color: #063670;">
+
+            <!-- Copyright -->
+            <div class="container">&copy; 2026</div>
+            <!-- Copyright -->
+          
+        </footer>
+
+    </body> 
+</html>

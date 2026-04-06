@@ -1,0 +1,36 @@
+{% extends 'MyInventoryApp/base.html' %}
+{% load static %}
+                
+                {% block content %}
+                <h2>Waterbottles</h2>
+                <div class="col-12">
+
+                    <table class="table table-striped">
+                        <thead>
+                            <th class="border-top border-bottom" scope="col"> SKU </th>
+                            <th class="border-top border-bottom" scope="col"> Brand </th>
+                            <th class="border-top border-bottom" scope="col"> Cost </th>
+                            <th class="border-top border-bottom" scope="col"> Size </th>
+                            <th class="border-top border-bottom" scope="col"> Mouth Size </th>
+                            <th class="border-top border-bottom" scope="col"> Color </th>
+                            <th class="border-top border-bottom" scope="col"> Supplied by </th>
+                            <th class="border-top border-bottom" scope="col"> Current Quantity </th>
+                        </thead>
+                        <tbody>
+                            {% for w in waterbottles %}
+                            <tr>
+                                <td> {{ w.SKU }} </td>
+                                <td> {{ w.Brand }} </td>
+                                <td> {{ w.Cost }} </td>
+                                <td> {{ w.Size }} </td>
+                                <td> {{ w.Mouth_Size }} </td>
+                                <td> {{ w.Color }} </td>
+                                <td> {{ w.Supplied_by.Name }} </td>
+                                <td> {{ w.Current_Quantity }} </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                </div>
+                {% endblock %}

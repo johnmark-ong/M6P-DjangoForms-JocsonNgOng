@@ -1,0 +1,44 @@
+{% extends 'tapasapp/base.html' %}
+{% load static %}
+
+    {% block sidebar %}
+        <a href="{% url 'view_menu' %}">Back to Main</a>
+    {% endblock %}
+
+                {% block content %}
+                <div class="container-fluid"> 
+        
+                    <div class="row justify-content-left">
+                        <div class="col-8" >
+                            <div class="card">
+                                <div class="card-header">
+                                    <h6><strong>Type in Dish Details:</strong></h6>
+                                </div>
+                                <div class="card-body">
+                                    <form id="add_menu_form" method="GET">
+                                        <div class="mb-3">
+                                            <label for="add_menu_name" class="form-label">Name:</label>
+                                            <input type="text" class="form-control" id="add_menu_name" name="add_menu_name">
+                                        </div>
+
+                                        <div class="row mb-4">
+                                            <div class="col-md-3">
+                                                <label for="add_menu_cooktime" class="form-label">Cook Time:</label>
+                                                <input type="number" class="form-control" id="add_menu_cooktime" name="add_menu_cooktime" min="0">
+                                            </div>
+
+                                            <div class="col-md-3 offset-md-3">
+                                                <label for="add_menu_preptime" class="form-label">Prep Time:</label>
+                                                <input type="number" class="form-control" id="add_menu_preptime" name="add_menu_preptime" min="0">
+                                            </div>
+                                        </div>
+                        
+                                        <button type="submit" class="btn btn-secondary">Add to dishes</button>
+                                    </form>                
+                                </div>
+                            </div>
+                        </div>            
+                    </div>
+                    
+                </div>
+                {% endblock %}
