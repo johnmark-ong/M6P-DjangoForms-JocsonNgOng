@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from .models import Dish
+from django.shortcuts import render, redirect
+from .models import Dish, Account
+from django.contrib import messages
 
 # Create your views here.
 

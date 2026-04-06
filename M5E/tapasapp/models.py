@@ -10,4 +10,3 @@ class Dish(models.Model):
 
     def __str__(self):
         return str(self.pk) + ": " + self.name
-    

@@ -20,8 +20,11 @@ from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.view_inventory, name='view_inventory'),
+    path('view_inventory', views.view_inventory, name='view_inventory'),
     path('add_bottle', views.add_bottle, name='add_bottle'),
     path('view_bottles', views.view_bottles, name='view_bottles'),
     path('view_supplier', views.view_supplier, name='view_supplier'),
+
+    path('', views.login_view, name='login'),
+    path('signup/', views.signup_view, name='signup'),
 ]

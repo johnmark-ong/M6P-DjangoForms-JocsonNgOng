@@ -45,3 +45,16 @@ class WaterBottle(models.Model):
 
     def __str__(self):
         return "{}: {}, {}, {}, {}, supplied by {}, {} : {}".format(self.SKU, self.Brand, self.Mouth_Size, self.Size, self.Color, self.Supplied_by, self.Cost, self.Current_Quantity)
+    
+class Account(models.Model):
+    username = models.CharField(max_length=100, unique=True)
+    password = models.CharField(max_length=100)
+
+    def getUsername(self):
+        return self.username
+
+    def getPassword(self):
+        return self.password
+
+    def __str__(self):
+        return self.username

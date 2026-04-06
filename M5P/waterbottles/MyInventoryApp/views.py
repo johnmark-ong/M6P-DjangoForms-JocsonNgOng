@@ -1,5 +1,6 @@
-from django.shortcuts import render
-from .models import Supplier, WaterBottle
+from django.shortcuts import render, redirect
+from .models import Supplier, WaterBottle, Account
+from django.contrib import messages
 
 # Create your views here.
 def view_bottles(request):
@@ -16,3 +17,30 @@ def view_inventory(request):
 
 def add_bottle(request):
     return render(request, 'MyInventoryApp/add_bottle.html')
+
+def login_view(request):
+    if request.method == 'POST':
+        u = request.POST.get('username')
+        p = request.POST.get('password')
+        
+        account = Account.objects.filter(username=u, password=p).first()
+        if account: 
+            return redirect('view_supplier')
+        else: 
+            messages.error(request, 'Invalid login')
+    
+    return render(request, 'MyInventoryApp/login.html')
+
+def signup_view(request):
+    if request.method == 'POST':
+        u = request.POST.get('username')
+        p = request.POST.get('password')
+        
+        if Account.objects.filter(username=u).exists():
+            messages.warning(request, "Account already exists")
+        else:
+            Account.objects.create(username=u, password=p)
+            messages.success(request, "Account created successfully")
+            return redirect('login')
+            
+    return render(request, 'MyInventoryApp/signup.html')
