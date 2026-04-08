@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from .models import Supplier, WaterBottle, Account
 from django.contrib import messages
 
@@ -55,3 +55,11 @@ def logout_view(request):
     global current_account
     current_account = None
     return redirect('login')
+
+def view_bottle_details(request, pk):
+    bottle = get_object_or_404(WaterBottle, pk=pk)
+    return render(request, 'MyInventoryApp/bottle_detail.html', {'bottle': bottle})
+
+def delete_bottle(request, pk):
+    WaterBottle.objects.filter(pk=pk).delete()
+    return redirect('view_bottles')
