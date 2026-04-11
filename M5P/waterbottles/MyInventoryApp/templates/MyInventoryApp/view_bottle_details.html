@@ -1,0 +1,25 @@
+{% extends 'MyInventoryApp/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2>Water Bottle Details</h2>
+</div>
+
+<div class="card col-md-6">
+    <div class="card-header">
+        <strong>{{ bottle.Brand }}</strong>
+    </div>
+    <div class="card-body">
+        <p><strong>SKU:</strong> {{ bottle.SKU }}</p>
+        <p><strong>Cost:</strong> {{ bottle.Cost }}</p>
+        <p><strong>Size:</strong> {{ bottle.Size }}</p>
+        <p><strong>Mouth Size:</strong> {{ bottle.Mouth_Size }}</p>
+        <p><strong>Color:</strong> {{ bottle.Color }}</p>
+        <p><strong>Supplied By:</strong> {{ bottle.Supplied_by.Name }}</p>
+        <p><strong>Current Quantity:</strong> {{ bottle.Current_Quantity }}</p>
+        <a href="{% url 'delete_bottle' pk=bottle.pk %}" class="btn btn-danger me-2">Delete</a>
+        <a href="{% url 'view_bottles' %}" class="btn btn-outline-secondary">Back</a>
+    </div>
+</div>
+{% endblock %}

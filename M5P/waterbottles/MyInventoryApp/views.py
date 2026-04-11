@@ -82,7 +82,7 @@ def logout_view(request):
 
 def view_bottle_details(request, pk):
     bottle = get_object_or_404(WaterBottle, pk=pk)
-    return render(request, 'MyInventoryApp/bottle_detail.html', {'bottle': bottle})
+    return render(request, 'MyInventoryApp/view_bottle_details.html', {'bottle': bottle})
 
 def delete_bottle(request, pk):
     WaterBottle.objects.filter(pk=pk).delete()
