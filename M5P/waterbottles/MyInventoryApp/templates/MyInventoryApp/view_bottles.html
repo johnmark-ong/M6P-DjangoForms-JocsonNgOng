@@ -22,7 +22,7 @@
                         </thead>
                         <tbody>
                             {% for w in waterbottles %}
-                            <tr style="cursor:pointer;" onclick="window.location='{% url 'view_bottle_details' pk=w.pk %}'">
+                             <tr style="cursor: pointer;" onclick="window.location='{% url 'view_bottle_details' pk=w.pk %}'">
                                 <td> {{ w.SKU }} </td>
                                 <td> {{ w.Brand }} </td>
                                 <td> {{ w.Cost }} </td>

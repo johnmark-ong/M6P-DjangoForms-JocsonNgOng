@@ -105,7 +105,7 @@ def change_password(request, pk):
         new_pw = request.POST.get('new_password')
         confirm_pw = request.POST.get('confirm_password')
 
-        if current_pw != account.password():
+        if current_pw != account.getPassword():
             messages.error(request, "Current password is incorrect. Please try again.")
         elif new_pw != confirm_pw:
             messages.error(request, "New password and confirmation do not match. Please try again.")

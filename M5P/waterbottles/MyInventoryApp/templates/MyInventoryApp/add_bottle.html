@@ -1,75 +1,67 @@
 {% extends 'MyInventoryApp/base.html' %}
 {% load static %}
-                {% block sidebar %}
-                    <a href="{% url 'view_inventory' %}">Back to Main Page</a>
-                {% endblock %}
-                
-                {% block content %}
-                <div class="container-fluid"> 
-        
-                    <div class="row justify-content-left">
-                        <div class="col-12" >
-                            <div class="card">
-                                <div class="card-header">
-                                    <h6><strong>Type in Waterbottle Details:</strong></h6>
-                                </div>
-                                <div class="card-body">
-                                    <form id="add_menu_form" method="GET">
 
-                                        <div class="row mb-4">
-                                            <div class="col-md-2">
-                                                <label for="add_sku" class="form-label">SKU:</label>
-                                                <input type="text" class="form-control" id="add_sku">
-                                            </div>
+{% block content %}
+<h2 class="mb-3">Add Water Bottle</h2>
 
-                                            <div class="col-md-3 offset-md-4">
-                                                <label for="add_brand" class="form-label">Brand:</label>
-                                                <input type="text" class="form-control" id="add_brand" name="add_brand">
-                                            </div>
-                                        </div>
+<div class="card col-md-8">
+    <div class="card-header"><strong>Type in Waterbottle Details:</strong></div>
+    <div class="card-body">
+        <form method="POST" action="{% url 'add_bottle' %}">
+            {% csrf_token %}
 
-                                        <div class="row mb-4">
-                                            <div class="col-md-3">
-                                                <label for="add_cost" class="form-label">Cost:</label>
-                                                <input type="number" class="form-control" id="add_cost" name="add_cost" step="0.01" min="0">
-                                            </div>
-
-                                            <div class="col-md-3 offset-md-3">
-                                                <label for="add_size" class="form-label">Size:</label>
-                                                <input type="text" class="form-control" id="add_size" name="add_size">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-4">
-                                            <div class="col-md-3">
-                                                <label for="add_mouth_size" class="form-label">Mouth Size:</label>
-                                                <input type="text" class="form-control" id="add_mouth_size" name="add_mouth_size">
-                                            </div>
-
-                                            <div class="col-md-3 offset-md-3">
-                                                <label for="add_color" class="form-label">Color:</label>
-                                                <input type="text" class="form-control" id="add_color" name="add_color">
-                                            </div>
-                                        </div>
-
-                                        <div class="row mb-4">
-                                            <div class="col-md-4">
-                                                <label for="add_suppliedby" class="form-label">Supplied by:</label>
-                                                <input type="text" class="form-control" id="add_suppliedby" name="add_suppliedby">
-                                            </div>
-
-                                            <div class="col-md-3 offset-md-2">
-                                                <label for="add_current_quantity" class="form-label">Current Quantity:</label>
-                                            <input type="number" class="form-control" id="add_current_quantity" name="add_current_quantity" min="0">
-                                            </div>
-                                        </div>
-                        
-                                        <button type="submit" class="btn btn-secondary">Add bottle</button>
-                                    </form>                
-                                </div>
-                            </div>
-                        </div>            
-                    </div>
-                    
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="sku" class="form-label">SKU:</label>
+                    <input type="text" class="form-control" id="sku" name="sku" required>
                 </div>
-                {% endblock %}
+                <div class="col-md-4">
+                    <label for="brand" class="form-label">Brand:</label>
+                    <input type="text" class="form-control" id="brand" name="brand" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="cost" class="form-label">Cost:</label>
+                    <input type="number" class="form-control" id="cost" name="cost" step="0.01" min="0" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="size" class="form-label">Size:</label>
+                    <input type="text" class="form-control" id="size" name="size" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="mouth_size" class="form-label">Mouth Size:</label>
+                    <input type="text" class="form-control" id="mouth_size" name="mouth_size" required>
+                </div>
+                <div class="col-md-4">
+                    <label for="color" class="form-label">Color:</label>
+                    <input type="text" class="form-control" id="color" name="color" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    <label for="supplier" class="form-label">Supplier:</label>
+                    <select class="form-select" id="supplier" name="supplier" required>
+                        <option value="" disabled selected>-- Select Supplier --</option>
+                        {% for s in suppliers %}
+                            <option value="{{ s.pk }}">{{ s.Name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    <label for="quantity" class="form-label">Current Quantity:</label>
+                    <input type="number" class="form-control" id="quantity" name="quantity" min="0" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-success me-2">Confirm</button>
+            <a href="{% url 'view_supplier' %}" class="btn btn-outline-secondary">Cancel</a>
+        </form>
+    </div>
+</div>
+{% endblock %}
