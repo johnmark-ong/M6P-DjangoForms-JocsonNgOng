@@ -63,3 +63,13 @@ def view_bottle_details(request, pk):
 def delete_bottle(request, pk):
     WaterBottle.objects.filter(pk=pk).delete()
     return redirect('view_bottles')
+
+def manage_account(request, pk):
+    account = get_object_or_404(Account, pk=pk)
+    return render(request, 'MyInventoryApp/manage_account.html', {'account': account})
+
+def delete_account(request, pk):
+    global current_account
+    Account.objects.filter(pk=pk).delete()
+    current_account = None
+    return redirect('login')
