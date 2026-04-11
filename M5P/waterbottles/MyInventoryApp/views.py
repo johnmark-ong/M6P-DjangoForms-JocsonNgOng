@@ -20,7 +20,31 @@ def view_inventory(request):
     return render(request, 'MyInventoryApp/base.html')
 
 def add_bottle(request):
-    return render(request, 'MyInventoryApp/add_bottle.html')
+    if request.method == 'POST':
+        sku = request.POST.get('sku')
+        brand = request.POST.get('brand')
+        cost = request.POST.get('cost')
+        size = request.POST.get('size')
+        mouth_size = request.POST.get('mouth_size')
+        color = request.POST.get('color')
+        supplier_id = request.POST.get('supplier')
+        quantity = request.POST.get('quantity')
+
+        supplier = get_object_or_404(Supplier, pk=supplier_id)
+        WaterBottle.objects.create(
+            SKU=sku,
+            Brand=brand,
+            Cost=cost,
+            Size=size,
+            Mouth_Size=mouth_size,
+            Color=color,
+            Supplied_by=supplier,
+            Current_Quantity=quantity,
+        )
+        return redirect('view_supplier')
+    
+    suppliers = Supplier.objects.all()
+    return render(request, 'MyInventoryApp/add_bottle.html', {'suppliers': suppliers})
 
 def login_view(request):
     global current_account
