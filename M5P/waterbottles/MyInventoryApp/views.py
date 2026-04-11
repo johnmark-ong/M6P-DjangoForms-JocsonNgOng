@@ -15,10 +15,6 @@ def view_supplier(request):
         'account': current_account,
         })
 
-def view_inventory(request):
-    #waterbottle_objects = WaterBottle.objects.all(), {'waterbottles':waterbottle_objects}
-    return render(request, 'MyInventoryApp/base.html')
-
 def add_bottle(request):
     if request.method == 'POST':
         sku = request.POST.get('sku')
