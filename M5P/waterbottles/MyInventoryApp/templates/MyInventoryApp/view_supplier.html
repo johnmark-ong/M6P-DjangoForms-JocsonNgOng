@@ -24,7 +24,7 @@
                         </thead>
                         <tbody>
                             {% for s in suppliers %}
-                            <tr>
+                            <tr style="cursor:pointer;" onclick="window.location='{% url 'view_bottles' %}'">
                                 <td> {{ s.Name }} </td>
                                 <td> {{ s.City }} </td>
                                 <td> {{ s.Country }} </td>
