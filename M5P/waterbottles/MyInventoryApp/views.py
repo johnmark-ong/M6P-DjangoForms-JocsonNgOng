@@ -8,6 +8,13 @@ def view_bottles(request):
     waterbottle_objects = WaterBottle.objects.all()
     return render(request, 'MyInventoryApp/view_bottles.html', {'waterbottles':waterbottle_objects})
 
+def view_supplier_bottles(request, pk):
+    supplier = get_object_or_404(Supplier, pk=pk)
+    waterbottle_objects = WaterBottle.objects.filter(Supplied_by=supplier)
+    return render(request, 'MyInventoryApp/view_bottles.html', {
+        'waterbottles':waterbottle_objects,
+        'supplier': supplier,
+        })
 def view_supplier(request):
     supplier_objects = Supplier.objects.all()
     return render(request, 'MyInventoryApp/view_supplier.html', {

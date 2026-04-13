@@ -15,7 +15,7 @@
 
                 <div class="col-12">
 
-                    <table class="table table-striped">
+                    <table class="table table-striped table-hover">
                         <thead>
                             <th class="border-top border-bottom" scope="col"> Name </th>
                             <th class="border-top border-bottom" scope="col"> City </th>
@@ -24,7 +24,7 @@
                         </thead>
                         <tbody>
                             {% for s in suppliers %}
-                            <tr style="cursor:pointer;" onclick="window.location='{% url 'view_bottles' %}'">
+                            <tr style="cursor:pointer;" onclick="window.location='{% url 'view_supplier_bottles' pk=s.pk %}'">
                                 <td> {{ s.Name }} </td>
                                 <td> {{ s.City }} </td>
                                 <td> {{ s.Country }} </td>
